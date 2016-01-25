@@ -11,6 +11,8 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +25,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                        .setAction("ACTION", null).show();
             }
         });
+
     }
 
     @Override
@@ -49,4 +52,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
