@@ -1,17 +1,25 @@
 package fr.domurado.escalier;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.concurrent.ExecutionException;
+
+import fr.domurado.escalier.task.StartDatabaseTask;
+
 public class MainActivity extends AppCompatActivity {
 
     private static String TAG = "MainActivity";
+
+    private SQLiteDatabase database = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("ACTION", null).show();
             }
         });
+
+        final StartDatabaseTask startDatabaseTask = new StartDatabaseTask();
+        startDatabaseTask.execute(MainActivity.this);
+        try {
+            database = startDatabaseTask.get();
+            Log.d(TAG, "Database started");
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
 
     }
 
