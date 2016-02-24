@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="player_1">Joueur 1</string>
+    <string name="player_2">Joueur 2</string>
+    <string name="player_3">Joueur 3</string>
+    <string name="title_activity_new_game">Nouvelle partie</string>
+    <string name="action_save">Enregistrer</string>
+    <string name="action_settings">Paramètres</string>
+</resources>

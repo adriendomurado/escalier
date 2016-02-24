@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="fr.domurado.escalier.NewGameActivity"
+    tools:showIn="@layout/activity_new_game">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="6"
+        android:rowCount="3">
+
+        <TableRow android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/txt_player_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/editText_player_1"
+                android:text="@string/player_1" />
+
+            <EditText
+                android:id="@+id/editText_player_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:inputType="textPersonName" />
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/txt_player_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/editText_player_2"
+                android:text="@string/player_2" />
+
+            <EditText
+                android:id="@+id/editText_player_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:inputType="textPersonName" />
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/txt_player_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/editText_player_3"
+                android:text="@string/player_3" />
+
+            <EditText
+                android:id="@+id/editText_player_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"
+                android:inputType="textPersonName" />
+        </TableRow>
+    </TableLayout>
+
+</android.support.v4.widget.NestedScrollView>
