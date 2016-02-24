@@ -119,4 +119,6 @@
     <string name="player_1">Player 1</string>
     <string name="player_2">Player 2</string>
     <string name="player_3">Player 3</string>
+    <string name="error_name_empty">A name cannot be empty</string>
+    <string name="title_activity_round">Round %1$d</string>
 </resources>

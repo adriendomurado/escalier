@@ -6,4 +6,6 @@
     <string name="title_activity_new_game">Nouvelle partie</string>
     <string name="action_save">Enregistrer</string>
     <string name="action_settings">Paramètres</string>
+    <string name="error_name_empty">Un nom ne peut pas être vide</string>
+    <string name="title_activity_round">Tour %1$d</string>
 </resources>
