@@ -18,6 +18,7 @@ public class GameDao {
     private SQLiteDatabase database = null;
 
     public GameDao(Context context) {
+        // FIXME : Switch to Realm
         final StartDatabaseTask startDatabaseTask = new StartDatabaseTask();
         startDatabaseTask.execute(context);
         try {
@@ -29,6 +30,7 @@ public class GameDao {
     }
 
     public long save(Game game) {
+        // FIXME : Switch to Realm
         ContentValues values = new ContentValues();
         values.put(EscalierContract.Game.COLUMN_NAME_PLAYER_1, game.getPlayer1());
         values.put(EscalierContract.Game.COLUMN_NAME_PLAYER_2, game.getPlayer2());

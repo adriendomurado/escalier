@@ -3,44 +3,61 @@ package fr.domurado.escalier.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Class representing a round in a game
  */
-public class Round {
+public class Round extends RealmObject {
 
-    private int roundId;
+    @PrimaryKey
+    private String roundId;
 
-    private int gameId;
+    private Game game;
+
+    private int cardNumber;
 
     /**
      * key : player
      * value : bet of player for this round
      */
+    @Ignore
     private Map<String, Integer> bet = new HashMap<>(3);
 
     /**
      * key : player
      * value : score du round
      */
+    @Ignore
     private Map<String, Integer> score = new HashMap<>(3);
 
     public Round() {
     }
 
-    public int getRoundId() {
+    public String getRoundId() {
         return roundId;
     }
 
-    public void setRoundId(int roundId) {
+    public void setRoundId(String roundId) {
         this.roundId = roundId;
     }
 
-    public int getGameId() {
-        return gameId;
+    public Game getGame() {
+        return game;
     }
 
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public Map<String, Integer> getBet() {

@@ -11,7 +11,7 @@ import android.view.View;
 
 public class RoundActivity extends AppCompatActivity {
 
-    private long gameId;
+    private String gameId;
     private int currentRound = 1;
 
     @Override
@@ -25,6 +25,6 @@ public class RoundActivity extends AppCompatActivity {
         setTitle(getResources().getString(R.string.title_activity_round, currentRound));
 
         Intent intent = getIntent();
-        gameId = intent.getLongExtra(NewGameActivity.EXTRA_GAME_ID, 0L);
+        gameId = intent.getStringExtra(NewGameActivity.EXTRA_GAME_ID);
     }
 }

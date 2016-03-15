@@ -2,6 +2,10 @@ package fr.domurado.escalier.database;
 
 import android.provider.BaseColumns;
 
+@Deprecated
+/**
+ * Replaced by Realm.io
+ */
 public final class EscalierContract {
 
     public EscalierContract() {

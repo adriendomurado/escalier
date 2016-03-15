@@ -2,12 +2,17 @@ package fr.domurado.escalier.model;
 
 import java.util.List;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Class representing a game of Escalier
  */
-public class Game {
+public class Game extends RealmObject {
 
-    private int gameId;
+    @PrimaryKey
+    private String gameId;
 
     private String player1;
 
@@ -15,7 +20,10 @@ public class Game {
 
     private String player3;
 
-    private List<Round> roundList;
+    private RealmList<Round> roundList;
+
+    public Game() {
+    }
 
     public Game(String player1, String player2, String player3) {
         this.player1 = player1;
@@ -23,11 +31,11 @@ public class Game {
         this.player3 = player3;
     }
 
-    public int getGameId() {
+    public String getGameId() {
         return gameId;
     }
 
-    public void setGameId(int gameId) {
+    public void setGameId(String gameId) {
         this.gameId = gameId;
     }
 
@@ -55,11 +63,11 @@ public class Game {
         this.player3 = player3;
     }
 
-    public List<Round> getRoundList() {
+    public RealmList<Round> getRoundList() {
         return roundList;
     }
 
-    public void setRoundList(List<Round> roundList) {
+    public void setRoundList(RealmList<Round> roundList) {
         this.roundList = roundList;
     }
 }

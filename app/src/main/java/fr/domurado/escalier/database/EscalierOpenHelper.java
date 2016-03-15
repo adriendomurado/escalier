@@ -4,6 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+@Deprecated
+/**
+ * Replaced by Realm.io
+ */
 public class EscalierOpenHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;

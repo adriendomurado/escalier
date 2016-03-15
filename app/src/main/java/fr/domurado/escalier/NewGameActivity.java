@@ -10,8 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import java.util.UUID;
+
 import fr.domurado.escalier.dao.GameDao;
 import fr.domurado.escalier.model.Game;
+import io.realm.Realm;
 
 public class NewGameActivity extends AppCompatActivity {
 
@@ -44,7 +47,7 @@ public class NewGameActivity extends AppCompatActivity {
 
         if (id == R.id.action_save) {
 
-            final GameDao gameDao = new GameDao(NewGameActivity.this);
+            //final GameDao gameDao = new GameDao(NewGameActivity.this);
             EditText player1 = (EditText) findViewById(R.id.editText_player_1);
             EditText player2 = (EditText) findViewById(R.id.editText_player_2);
             EditText player3 = (EditText) findViewById(R.id.editText_player_3);
@@ -65,8 +68,18 @@ public class NewGameActivity extends AppCompatActivity {
                 return true;
             }
 
-            final Game game = new Game(player1_string, player2_string, player3_string);
-            long newGameId = gameDao.save(game);
+            Realm realm = Realm.getDefaultInstance();
+            realm.beginTransaction();
+
+            Game game = realm.createObject(Game.class);
+            String newGameId = UUID.randomUUID().toString();
+            game.setGameId(newGameId);
+            game.setPlayer1(player1_string);
+            game.setPlayer2(player2_string);
+            game.setPlayer3(player3_string);
+
+            realm.commitTransaction();
+
             Log.d(TAG, "New game saved. Id = " + newGameId);
             Intent intent = new Intent(this, RoundActivity.class);
             intent.putExtra(EXTRA_GAME_ID, newGameId);
