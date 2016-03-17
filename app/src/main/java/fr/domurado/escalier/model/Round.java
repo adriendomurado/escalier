@@ -19,6 +19,8 @@ public class Round extends RealmObject {
 
     private int cardNumber;
 
+    private boolean up;
+
     /**
      * key : player
      * value : bet of player for this round
@@ -74,5 +76,13 @@ public class Round extends RealmObject {
 
     public void setScore(Map<String, Integer> score) {
         this.score = score;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
     }
 }

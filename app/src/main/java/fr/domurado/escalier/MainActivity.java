@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -14,11 +16,19 @@ import android.view.View;
 
 import java.util.concurrent.ExecutionException;
 
+import fr.domurado.escalier.model.Game;
 import fr.domurado.escalier.task.StartDatabaseTask;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
     private static String TAG = "MainActivity";
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // creation of recycler view
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<Game> query = realm.where(Game.class);
+        RealmResults<Game> results = query.findAll();
+
+        mAdapter = new GameAdapter(results);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override

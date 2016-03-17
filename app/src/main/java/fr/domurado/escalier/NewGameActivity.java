@@ -79,6 +79,7 @@ public class NewGameActivity extends AppCompatActivity {
             game.setPlayer3(player3_string);
 
             realm.commitTransaction();
+            realm.close();
 
             Log.d(TAG, "New game saved. Id = " + newGameId);
             Intent intent = new Intent(this, RoundActivity.class);
