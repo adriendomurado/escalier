@@ -17,13 +17,15 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
     private List<Game> mGames;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        public LinearLayout foreground;
         public TextView players;
         public TextView cardNbs;
 
-        public ViewHolder(LinearLayout linearLayout) {
-            super(linearLayout);
-            players = (TextView) linearLayout.findViewById(R.id.players);
-            cardNbs = (TextView) linearLayout.findViewById(R.id.card_nbs);
+        public ViewHolder(View itemView) {
+            super(itemView);
+            foreground = (LinearLayout) itemView.findViewById(R.id.foreground);
+            players = (TextView) itemView.findViewById(R.id.players);
+            cardNbs = (TextView) itemView.findViewById(R.id.card_nbs);
         }
     }
 
@@ -33,7 +35,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
 
     @Override
     public GameAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.game_view, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_view, parent, false);
         return new ViewHolder(v);
     }
 
