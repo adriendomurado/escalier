@@ -6,10 +6,12 @@ import java.util.Map;
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.RealmClass;
 
 /**
  * Class representing a round in a game
  */
+@RealmClass
 public class Round extends RealmObject {
 
     @PrimaryKey

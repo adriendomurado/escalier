@@ -1,36 +1,27 @@
 package fr.domurado.escalier;
 
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 import fr.domurado.escalier.model.Game;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
 
-    private List<Game> mGames;
+    private Realm realm;
+    private RealmResults<Game> mGames;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public LinearLayout foreground;
-        public TextView players;
-        public TextView cardNbs;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            foreground = (LinearLayout) itemView.findViewById(R.id.foreground);
-            players = (TextView) itemView.findViewById(R.id.players);
-            cardNbs = (TextView) itemView.findViewById(R.id.card_nbs);
-        }
-    }
-
-    public GameAdapter(List<Game> games) {
-        mGames = games;
+    public GameAdapter(Realm realm) {
+        this.realm = realm;
+        RealmQuery<Game> query = realm.where(Game.class);
+        mGames = query.findAll();
+        notifyDataSetChanged();
     }
 
     @Override
@@ -55,5 +46,26 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mGames.size();
+    }
+
+    public void removeAt(int itemPosition) {
+        realm.beginTransaction();
+        Game item = mGames.get(itemPosition);
+        item.removeFromRealm();
+        realm.commitTransaction();
+        notifyItemRemoved(itemPosition);
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public LinearLayout foreground;
+        public TextView players;
+        public TextView cardNbs;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            foreground = (LinearLayout) itemView.findViewById(R.id.foreground);
+            players = (TextView) itemView.findViewById(R.id.players);
+            cardNbs = (TextView) itemView.findViewById(R.id.card_nbs);
+        }
     }
 }

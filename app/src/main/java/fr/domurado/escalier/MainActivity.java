@@ -1,10 +1,7 @@
 package fr.domurado.escalier;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,25 +10,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.concurrent.ExecutionException;
-
-import fr.domurado.escalier.model.Game;
-import fr.domurado.escalier.task.StartDatabaseTask;
 import io.realm.Realm;
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
     private static String TAG = "MainActivity";
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private GameAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -57,10 +47,8 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         Realm realm = Realm.getDefaultInstance();
-        RealmQuery<Game> query = realm.where(Game.class);
-        RealmResults<Game> results = query.findAll();
 
-        mAdapter = new GameAdapter(results);
+        mAdapter = new GameAdapter(realm);
         mRecyclerView.setAdapter(mAdapter);
 
         // TouchHelper to enable swipe
@@ -94,9 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                // TODO : delete game
                 Snackbar.make(toolbar, "Game deleted", Snackbar.LENGTH_LONG).show();
-                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                mAdapter.removeAt(viewHolder.getAdapterPosition());
             }
         };
 

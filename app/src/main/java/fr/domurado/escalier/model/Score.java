@@ -2,10 +2,12 @@ package fr.domurado.escalier.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.RealmClass;
 
 /**
  * Represents the score of a player on a round
  */
+@RealmClass
 public class Score extends RealmObject {
 
     @PrimaryKey
